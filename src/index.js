@@ -1,4 +1,4 @@
-const { getLog, getBodyArray } = require("./utils/get-encrypt.js");
+const { getLog } = require("./utils/get-encrypt.js");
 const http = require("http");
 const { URL } = require("url");
 const port = 3000;
@@ -15,17 +15,6 @@ const serverFn = (request, response) => {
     });
     body.then((item) => {
       response.end(JSON.stringify(item));
-    });
-  }
-
-  if (url == "/logs") {
-    let count = parseInt(parseUrl.searchParams.get("count") || 1);
-    let bodyArray = getBodyArray(count);
-    response.writeHead(200, {
-      "Content-Type": "application/json",
-    });
-    Promise.all(bodyArray).then((values) => {
-      response.end(JSON.stringify(values));
     });
   }
 };

@@ -1,7 +1,8 @@
 const https = require("https");
 const fs = require("fs");
+const path = require("path");
 
-const getNeetWorkJs = async (path, url) => {
+const getNeetWorkJs = async (p, url) => {
   const JS_REGEX = /smash-h5\/index\.js":(([\d\D])+?(!function([\d\D])+?)},"\.\/node_modules)/gim;
 
   let jsContent = await httpGet(url);
@@ -10,7 +11,9 @@ const getNeetWorkJs = async (path, url) => {
     jsContent = matchResult[3];
   }
 
-  fs.writeFileSync(path, jsContent);
+  const dir = path.dirname(p);
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(p, jsContent);
 };
 
 function httpGet(url) {
