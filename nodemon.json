@@ -1,0 +1,20 @@
+{
+    "restartable": "r",
+    "verbose": false,
+    "watch": [
+        "./src"
+    ],
+    "ext": "ts,js,json",
+    "exec": "node ./src/index.js",
+    "ignore": [
+        "log/**.txt",
+        ".cache/**",
+        "public/file/**",
+        "node_modules/**"
+    ],
+    "delay": 100,
+    "arg": [],
+    "env": {
+        "var": "xx"
+    }
+}
