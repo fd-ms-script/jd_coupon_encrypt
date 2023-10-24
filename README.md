@@ -1,3 +1,7 @@
+### 活动地址
+
+https://prodev.m.jd.com/mall/active/7ooZUnJ6JSgpdyqUNzqJVsmAd5U/index.html?_ts=1697822014415&ad_od=share&utm_user=plusmember&gx=RnAomDgLPTTeyp5Z_sA9&gxd=RnAowmYKPGXfnp4Sq4B_W578vOMp4E7JgUugKDcomXTOIlSPI-BCnvuytD0G7kc&cu=true&utm_source=kong&utm_medium=jingfen&utm_campaign=t_1002827178_&utm_term=18934dea93cd4bc69ebb7654b8967b2f&preventPV=1&forceCurrentView=1
+
 ### 1、抢券直链模板
 
 https://api.m.jd.com/client.action?functionId=newBabelAwardCollection&body={"activityId":代码,"from":"H5node","scene":"1","args":"key=代码,roleId=数字","log":代码,"random":代码}&client=wh5&clientVersion=1.0.0
