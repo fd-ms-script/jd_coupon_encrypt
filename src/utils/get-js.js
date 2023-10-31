@@ -3,13 +3,7 @@ const fs = require("fs");
 const path = require("path");
 
 const getNeetWorkJs = async (filePath, url) => {
-  const JS_REGEX = /smash-h5\/index\.js":(([\d\D])+?(!function([\d\D])+?)},"\.\/node_modules)/gim;
-
   let jsContent = await httpGet(url);
-  let matchResult = JS_REGEX.exec(jsContent);
-  if (matchResult && matchResult.length != 0) {
-    jsContent = matchResult[3];
-  }
 
   const dir = path.dirname(filePath);
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });

@@ -26,7 +26,6 @@ async function getLog(logId) {
     log: e || -1,
     random: t,
   });
-  console.log(o);
 
   return JSON.parse(o);
 }
@@ -36,7 +35,7 @@ async function runScript() {
     process.chdir(__dirname);
 
     await fs.access(BASE_FILE_PATH, R_OK);
-    const jsContent = await fs.readFile(BASE_FILE_PATH, { encoding: "utf8" });
+    let jsContent = await fs.readFile(BASE_FILE_PATH, { encoding: "utf8" });
 
     const ctx = {
       window: { addEventListener: new Function() },
