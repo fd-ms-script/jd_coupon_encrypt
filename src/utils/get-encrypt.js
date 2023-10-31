@@ -1,15 +1,19 @@
 const vm = require("vm");
 const { R_OK } = require("fs").constants;
-const fs = require("fs").promises;
-const { SCRIPT_URL, BASE_FILE_PATH, USER_AGENT } = require("../constant/file");
-const { getNeetWorkJs } = require("./get-js");
+const fs = require("fs");
+const { SCRIPT_URL, BASE_FILE_PATH, USER_AGENT } = require("@/constant/file");
+const { default: axios } = require("axios");
+const path = require("path");
 
 let smashUtils;
 
-(async () => {
-  await getNeetWorkJs(BASE_FILE_PATH, SCRIPT_URL);
-  await runScript();
-})();
+const getNeetWorkJs = async (filePath, url) => {
+  const res = await axios.get(url);
+
+  const dir = path.dirname(filePath);
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(filePath, res.data);
+};
 
 async function getLog(logId) {
   logId = logId || "coupon_receive";
@@ -34,8 +38,8 @@ async function runScript() {
   try {
     process.chdir(__dirname);
 
-    await fs.access(BASE_FILE_PATH, R_OK);
-    let jsContent = await fs.readFile(BASE_FILE_PATH, { encoding: "utf8" });
+    await fs.accessSync(BASE_FILE_PATH, R_OK);
+    let jsContent = await fs.readFileSync(BASE_FILE_PATH, { encoding: "utf8" });
 
     const ctx = {
       window: { addEventListener: new Function() },
@@ -56,5 +60,10 @@ async function runScript() {
     console.log("脚本运行错误", e);
   }
 }
+
+(async () => {
+  await getNeetWorkJs(BASE_FILE_PATH, SCRIPT_URL);
+  await runScript();
+})();
 
 module.exports = { getLog };

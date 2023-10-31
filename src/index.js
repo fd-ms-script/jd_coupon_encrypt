@@ -1,4 +1,5 @@
-const { getLog } = require("./utils/get-encrypt.js");
+require("module-alias/register");
+const { getLog } = require("@/utils/get-encrypt.js");
 const http = require("http");
 const { URL } = require("url");
 const port = 3000;
